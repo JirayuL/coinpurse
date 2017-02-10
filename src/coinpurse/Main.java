@@ -16,7 +16,7 @@ public class Main {
         // 1. create a Purse
     	Purse purse = new Purse(10);
         // 2. create a ConsoleDialog with a reference to the Purse object
-
+    	
         // 3. run the ConsoleDialog
 
     }
