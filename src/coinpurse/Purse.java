@@ -53,9 +53,8 @@ public class Purse {
 	 */
 	public double getBalance() {
 		double balance = 0;
-		for (Coin x : money) {
+		for (Coin x : money)
 			balance += x.getValue();
-		}
 		return balance;
 	}
 
