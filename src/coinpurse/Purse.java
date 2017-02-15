@@ -1,6 +1,5 @@
 package coinpurse;
 
-//TODO import ArrayList and Collections (so you can use Collections.sort())
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -16,7 +15,6 @@ import java.util.Comparator;
  */
 public class Purse {
 	/** Collection of objects in the purse. */
-	// TODO declare a List of Coins named "money".
 	private List<Coin> money = new ArrayList<Coin>();
 
 	/**
@@ -106,18 +104,9 @@ public class Purse {
 	 *         withdraw requested amount.
 	 */
 	public Coin[] withdraw(double amount) {
-		// TODO don't allow to withdraw amount < 0
-
-		// failed. Don't change the contents of the purse.
 		if (amount <= 0 || amount > getBalance())
 			return null;
-
-		/*
-		 * See lab sheet for outline of a solution, or devise your own solution.
-		 */
 		List<Coin> remove = new ArrayList<Coin>();
-		// Did we get the full amount?
-		// This code assumes you decrease amount each time you remove a coin.
 		Collections.sort(money);
 		Collections.reverse(money);
 		for (Coin coin : money) {
@@ -131,20 +120,13 @@ public class Purse {
 				return remove.toArray(new Coin[0]);
 			}
 		}
-
 		return null;
-
-		// Success.
-		// Remove the coins you want to withdraw from purse,
-		// and return them as an array.
-		// Use list.toArray( array[] ) to copy a list into an array.
-		// toArray returns a reference to the array itself.
-		// TODO replace this with real code
 	}
 
 	/**
 	 * toString returns a string description of the purse contents. It can
 	 * return whatever is a useful description.
+	 * @return a String description of the purse contents.
 	 */
 	public String toString() {
 		// TODO complete this
@@ -152,5 +134,3 @@ public class Purse {
 	}
 
 }
-// TODO remove the TODO comments after you complete them.
-// TODO When you are finished, there should not be any TODO. Including this one.
