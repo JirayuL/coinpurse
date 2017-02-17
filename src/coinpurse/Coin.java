@@ -1,13 +1,13 @@
 package coinpurse;
 
 /**
- * Coin represemts coinage (money) with a fixed value and currency.
+ * Coin represents coinage (money) with a fixed value and currency.
  *  
  * @author Jirayu Laungwiawan
  * @version 20.1.17
  */
 /** Implement Comparable to able to make a comparison. */
-public class Coin implements Comparable<Coin> {
+public class Coin implements Comparable<Coin> , Valuable {
 	public static final String DEFAULT_CURRENCY = "Baht";
 	/** Value of the coin. */
 	private final double value;
@@ -92,7 +92,7 @@ public class Coin implements Comparable<Coin> {
 	 * @return this.value and this.currency of the coin.
 	 */
 	public String toString() {
-		return String.format("%.2f-%s", this.value, this.currency);
+		return String.format("%.2f-Coin %s", this.value, this.currency);
 	}
 	
 	public static void main(String[] args) {

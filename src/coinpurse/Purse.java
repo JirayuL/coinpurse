@@ -15,7 +15,7 @@ import java.util.Comparator;
  */
 public class Purse {
 	/** Collection of objects in the purse. */
-	private List<Coin> money = new ArrayList<Coin>();
+	private List<Valuable> money = new ArrayList<>();
 
 	/**
 	 * Capacity is maximum number of coins the purse can hold. Capacity is set
@@ -51,7 +51,7 @@ public class Purse {
 	 */
 	public double getBalance() {
 		double balance = 0;
-		for (Coin x : money)
+		for (Valuable x : money)
 			balance += x.getValue();
 		return balance;
 	}
@@ -61,7 +61,7 @@ public class Purse {
 	 * 
 	 * @return the capacity
 	 */
-	// TODO write accessor method for capacity. Use Java naming convention.
+	// TODO write accessory method for capacity. Use Java naming convention.
 	public int getCapacity() {
 		return this.capacity;
 	}
@@ -86,10 +86,10 @@ public class Purse {
 	 *            is a Coin object to insert into purse
 	 * @return true if coin inserted, false if can't insert
 	 */
-	public boolean insert(Coin coin) {
-		if (isFull() || coin.getValue() <= 0)
+	public boolean insert(Valuable valuable) {
+		if (isFull() || valuable.getValue() <= 0)
 			return false;
-		money.add(coin);
+		money.add(valuable);
 		return true;
 	}
 
@@ -103,21 +103,26 @@ public class Purse {
 	 * @return array of Coin objects for money withdrawn, or null if cannot
 	 *         withdraw requested amount.
 	 */
-	public Coin[] withdraw(double amount) {
+	public Valuable[] withdraw(double amount) {
 		if (amount <= 0 || amount > getBalance())
 			return null;
-		List<Coin> remove = new ArrayList<Coin>();
-		Collections.sort(money);
+		List<Valuable> remove = new ArrayList<Valuable>();
+		Collections.sort(money, new Comparator<Valuable>() {
+			@Override
+			public int compare(Valuable o1, Valuable o2) {
+				return (int) Math.signum(o1.getValue() - o2.getValue());
+			}
+		});
 		Collections.reverse(money);
-		for (Coin coin : money) {
-			if (amount >= coin.getValue()) {
-				amount -= coin.getValue();
-				remove.add(coin);
+		for (Valuable valuable : money) {
+			if (amount >= valuable.getValue()) {
+				amount -= valuable.getValue();
+				remove.add(valuable);
 			}
 			if (amount == 0) {
-				for (Coin removeCoin : remove)
-					money.remove(removeCoin);
-				return remove.toArray(new Coin[0]);
+				for (Valuable removeValuable : remove)
+					money.remove(removeValuable);
+				return remove.toArray(new Valuable[0]);
 			}
 		}
 		return null;
@@ -126,11 +131,12 @@ public class Purse {
 	/**
 	 * toString returns a string description of the purse contents. It can
 	 * return whatever is a useful description.
+	 * 
 	 * @return a String description of the purse contents.
 	 */
 	public String toString() {
 		// TODO complete this
-		return count() + " coins with value " + getBalance();
+		return count() + " with value " + getBalance();
 	}
 
 }
