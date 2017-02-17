@@ -62,16 +62,25 @@ public class CoinUtil {
 	 * Hint: this is easy if you sort the coins by currency first. :-)
 	 */
 	public static void sumByCurrency(List<Coin> coins) {
-		sortByCurrency(coins);
-		double sum = 0.0;
-		for (int i = 0; i < coins.size() - 1; i++) {
-			sum += coins.get(i).getValue();
-			if (!coins.get(i).getCurrency().equalsIgnoreCase(coins.get(i + 1).getCurrency())) {
-				System.out.printf("%.2f + %s ", sum, coins.get(i).getCurrency());
-				sum = 0;
-			}
+		Map<String, Double> map = new HashMap<>();
+		for (Coin coin : coins){
+			String currency = coin.getCurrency();
+			map.put(currency, map.getOrDefault(currency, 0.0) + coin.getValue());
 		}
-
+		for (String currency : map.keySet())
+			System.out.println(map.get(currency) + " " + currency);
+		
+		// sortByCurrency(coins);
+		// System.out.println(coins);
+		// double sum = 0.0;
+		// for (int i = 0; i < coins.size() - 1; i++) {
+		// sum += coins.get(i).getValue();
+		// if (!coins.get(i).getCurrency().equalsIgnoreCase(coins.get(i +
+		// 1).getCurrency())) {
+		// System.out.printf("%.2f + %s ", sum, coins.get(i).getCurrency());
+		// sum = 0;
+		// }
+		// }
 	}
 
 	/**
@@ -138,11 +147,5 @@ public class CoinUtil {
 
 		}
 		System.out.println(); // end the line
-	}
-}
-
-class CompareByCurrency {
-	public CompareByCurrency() {
-
 	}
 }
