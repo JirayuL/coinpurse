@@ -6,6 +6,8 @@ import java.util.stream.Collectors;
 
 /**
  * Some Coin utility methods for practice using Lists and Comparator.
+ * @author Jirayu Laungwilawan
+ * @version 14.2.17
  */
 public class CoinUtil {
 
