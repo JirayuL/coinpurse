@@ -57,7 +57,7 @@ public class BankNote implements Comparable<BankNote>, Valuable {
 		if (obj.getClass() != this.getClass())
 			return false;
 		BankNote other = (BankNote) obj;
-		if (other.getValue() == this.getValue() && other.getCurrency() == this.getCurrency())
+		if (other.getValue() == this.getValue() && other.getCurrency().equals(this.getCurrency()))
 			return true;
 		return false;
 	}
