@@ -7,13 +7,7 @@ package coinpurse;
  * @version 20.1.17
  */
 /** Implement Comparable to able to make a comparison. */
-public class Coin implements Comparable<Coin>, Valuable {
-	public static final String DEFAULT_CURRENCY = "Baht";
-	/** Value of the coin. */
-	private final double value;
-	/** The currency, of course. */
-	private final String currency;
-
+public class Coin extends AbstractValuable {
 	/**
 	 * Receive value from user and set currency to default.
 	 * 
@@ -21,8 +15,7 @@ public class Coin implements Comparable<Coin>, Valuable {
 	 *            of coin
 	 */
 	public Coin(double value) {
-		this.value = value;
-		this.currency = DEFAULT_CURRENCY;
+		this(value, DEFAULT_CURRENCY);
 	}
 
 	/**
@@ -34,56 +27,7 @@ public class Coin implements Comparable<Coin>, Valuable {
 	 *            of coin from user.
 	 */
 	public Coin(double value, String currency) {
-		this.value = value;
-		this.currency = currency;
-	}
-
-	/**
-	 * Return value of this.value.
-	 * 
-	 * @return value of this.value.
-	 */
-	public double getValue() {
-		return this.value;
-	}
-
-	/**
-	 * Return this.currency of the coin.
-	 * 
-	 * @return this.currency of the coin.
-	 */
-	public String getCurrency() {
-		return this.currency;
-	}
-
-	/**
-	 * Method for check whether it is alike.
-	 * 
-	 * @param Object
-	 *            obj to check whether it is alike.
-	 */
-	public boolean equals(Object obj) {
-		if (obj == null)
-			return false;
-		if (obj.getClass() != this.getClass())
-			return false;
-		Coin other = (Coin) obj;
-		if (other.getValue() == this.getValue() && other.getCurrency().equals(this.getCurrency()))
-			return true;
-		return false;
-	}
-
-	/**
-	 * Compare two coin using value to compare.
-	 * 
-	 * @param Coin
-	 *            c from user to compare.
-	 * @return Return result of comparison.
-	 */
-	public int compareTo(Coin c) {
-		if (c == null)
-			return -1;
-		return (int) Math.signum(this.value - c.getValue());
+		super(value, currency);
 	}
 
 	/**
