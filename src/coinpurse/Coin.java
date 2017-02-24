@@ -7,7 +7,7 @@ package coinpurse;
  * @version 20.1.17
  */
 /** Implement Comparable to able to make a comparison. */
-public class Coin implements Comparable<Coin> , Valuable {
+public class Coin implements Comparable<Coin>, Valuable {
 	public static final String DEFAULT_CURRENCY = "Baht";
 	/** Value of the coin. */
 	private final double value;
@@ -87,14 +87,14 @@ public class Coin implements Comparable<Coin> , Valuable {
 	}
 
 	/**
-	 * Return this.value and this.currency of the coin.
+	 * Return information of the coin.
 	 * 
-	 * @return this.value and this.currency of the coin.
+	 * @return information of the coin.
 	 */
 	public String toString() {
-		return String.format("%.2f-Coin %s", this.value, this.currency);
+		return String.format("%.2f-%s coin", this.value, this.currency);
 	}
-	
+
 	public static void main(String[] args) {
 		Coin one = new Coin(1);
 		Coin five = new Coin(5);
