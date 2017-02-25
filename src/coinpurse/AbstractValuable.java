@@ -1,8 +1,8 @@
 package coinpurse;
 
-public class AbstractValuable implements Valuable{
+public class AbstractValuable implements Valuable {
 
-	public static final String DEFAULT_CURRENCY = "Baht";
+//	public static final String DEFAULT_CURRENCY = "Baht";
 	/** Value of the coin. */
 	protected final double value;
 	/** The currency, of course. */

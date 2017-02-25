@@ -8,15 +8,8 @@ package coinpurse;
  */
 /** Implement Comparable to able to make a comparison. */
 public class Coin extends AbstractValuable {
-	/**
-	 * Receive value from user and set currency to default.
-	 * 
-	 * @param value
-	 *            of coin
-	 */
-	public Coin(double value) {
-		this(value, DEFAULT_CURRENCY);
-	}
+	private final String THAI_SECOUND_CURRENCY = "Satang";
+	private final String MALAY_SECOUND_CURRENCY = "Sen";
 
 	/**
 	 * A coin with given value and currency.
@@ -36,17 +29,11 @@ public class Coin extends AbstractValuable {
 	 * @return information of the coin.
 	 */
 	public String toString() {
+//		if(this.currency.equals("Baht") && this.value < 1)
+//			return String.format("%.2f-%s coin", this.value, this.THAI_SECOUND_CURRENCY);
+//		if(this.currency.equals("Ringgit") && this.value < 1)
+//			return String.format("%.2f-%s coin", this.value, this.MALAY_SECOUND_CURRENCY); 
 		return String.format("%.2f-%s coin", this.value, this.currency);
-	}
-
-	public static void main(String[] args) {
-		Coin one = new Coin(1);
-		Coin five = new Coin(5);
-		Coin maly = new Coin(0.5, "Ringgit");
-		System.out.println(one.toString());
-		System.out.println(one.compareTo(five));
-		System.out.println(five.compareTo(one));
-		System.out.println(one.equals(five));
 	}
 
 }

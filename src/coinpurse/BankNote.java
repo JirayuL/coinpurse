@@ -7,24 +7,13 @@ package coinpurse;
  * @version 17.2.17
  */
 public class BankNote extends AbstractValuable {
-	/**
-	 * I make it static because every time i call this object the serial number
-	 * change too.
-	 */
-	private static long nextSerialNumber = 1000000;
-	/** The serial number of bank note. */
+//	/**
+//	 * I make it static because every time i call this object the serial number
+//	 * change too.
+//	 */
+//	private static long nextSerialNumber = 1000000;
+//	/** The serial number of bank note. */
 	private long serialNumber;
-
-	/**
-	 * Receive value from user and set currency to default.
-	 * 
-	 * @param value
-	 *            of bank note.
-	 */
-	public BankNote(double value) {
-		this(value, DEFAULT_CURRENCY);
-	}
-
 	/**
 	 * Receive value and currency from user.
 	 * 
@@ -35,8 +24,20 @@ public class BankNote extends AbstractValuable {
 	 */
 	public BankNote(double value, String currency) {
 		super(value, currency);
-		this.serialNumber = nextSerialNumber;
-		nextSerialNumber += 1;
+		this.serialNumber = 0;
+	}
+
+	/**
+	 * Receive value and currency from user.
+	 * 
+	 * @param Recieve
+	 *            value of bank note.
+	 * @param Recieve
+	 *            currency of bank note.
+	 */
+	public BankNote(double value, String currency, long serialNumber) {
+		super(value, currency);
+		this.serialNumber = serialNumber;
 	}
 
 	/**
@@ -55,7 +56,8 @@ public class BankNote extends AbstractValuable {
 	 */
 	@Override
 	public String toString() {
-		return String.format("%f-&s note <%l>", this.value, this.currency, this.serialNumber);
+		return String.format(value + "-%s note [%d]", currency, serialNumber);
+//		return String.format("%f-&s note %d", this.value, this.currency, this.serialNumber);
 	}
 
 }
