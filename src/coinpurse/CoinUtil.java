@@ -46,11 +46,12 @@ public class CoinUtil {
 	 *            use it to sort the coins.
 	 */
 	public static void sortByCurrency(List<Valuable> coins) {
-		Collections.sort(coins, new Comparator<Valuable>() {
+		Comparator<Valuable> compToIgnoreCase = new Comparator<Valuable>() {
 			public int compare(Valuable c1, Valuable c2) {
 				return c1.getCurrency().compareToIgnoreCase(c2.getCurrency());
-			};
-		});
+			}
+		};
+		Collections.sort(coins, compToIgnoreCase);
 	}
 
 	/**

@@ -8,8 +8,8 @@ package coinpurse;
  */
 /** Implement Comparable to able to make a comparison. */
 public class Coin extends AbstractValuable {
-	private final String THAI_SECOUND_CURRENCY = "Satang";
-	private final String MALAY_SECOUND_CURRENCY = "Sen";
+//	private final String THAI_SECOUND_CURRENCY = "Satang";
+//	private final String MALAY_SECOUND_CURRENCY = "Sen";
 
 	/**
 	 * A coin with given value and currency.
