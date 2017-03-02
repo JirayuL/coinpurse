@@ -14,18 +14,14 @@ public class AbstractValuable implements Valuable {
 	}
 
 	/**
-	 * Return value of this.value.
-	 * 
-	 * @return value of this.value.
+	 * @see coinpurse.Valuable#getValue()
 	 */
 	public double getValue() {
 		return this.value;
 	}
 
 	/**
-	 * Return this.currency of the coin.
-	 * 
-	 * @return this.currency of the coin.
+	 *@see coinpurse.Valuable#getCurrency()
 	 */
 	public String getCurrency() {
 		return this.currency;
@@ -34,8 +30,7 @@ public class AbstractValuable implements Valuable {
 	/**
 	 * Method for check whether it is alike.
 	 * 
-	 * @param Object
-	 *            obj to check whether it is alike.
+	 * @see java.util.Comparator#equals(Object)
 	 */
 	public boolean equals(Object obj) {
 		if (obj == null)
