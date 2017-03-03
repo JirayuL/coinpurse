@@ -2,8 +2,6 @@ package coinpurse;
 
 import java.util.Scanner;
 
-import org.hamcrest.Factory;
-
 /**
  * User Interface for the Coin Purse. This class provides simple interactive
  * dialog for inserting and removing money to/from the purse, and displaying the
@@ -14,7 +12,7 @@ import org.hamcrest.Factory;
  */
 public class ConsoleDialog {
 	// default currency for this dialog
-//	public static final String CURRENCY = "Baht";
+	// public static final String CURRENCY = "Baht";
 	// use a single java.util.Scanner object for reading all input
 	private static Scanner console = new Scanner(System.in);
 
@@ -22,7 +20,7 @@ public class ConsoleDialog {
 	private Purse purse;
 
 	private MoneyFactory moneyFactory = MoneyFactory.getInstance();
-	
+
 	private String CURRENCY = moneyFactory.getCurrency();
 
 	/**

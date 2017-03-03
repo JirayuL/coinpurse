@@ -45,7 +45,7 @@ public class BankNote extends AbstractValuable {
 	 * 
 	 * @return Return serial number of the bank note.
 	 */
-	private long getSerial() {
+	public long getSerial() {
 		return this.serialNumber;
 	}
 

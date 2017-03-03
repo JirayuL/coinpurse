@@ -1,7 +1,5 @@
 package coinpurse;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.stream.DoubleStream;
 
 public class ThaiMoneyFactory extends MoneyFactory {

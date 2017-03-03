@@ -9,7 +9,7 @@ package coinpurse;
 public class Main {
 	
 
-    private static final MoneyFactory factory = null;
+//    private static final MoneyFactory factory = null;
     
     
 	/**
