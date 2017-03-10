@@ -13,10 +13,6 @@ public abstract class MoneyFactory {
 		if (moneyFactory == null) {
 			ResourceBundle bundle = ResourceBundle.getBundle("purse");
 			String className = bundle.getString("moneyfactory");
-			if(className.equals("coinpurse.MalayMoneyFactory"))
-				currency = "Ringgit";
-			if(className.equals("coinpurse.ThaiMoneyFactory"))
-				currency = "Baht";
 			try {
 				moneyFactory = (MoneyFactory) Class.forName(className).newInstance();
 			} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
