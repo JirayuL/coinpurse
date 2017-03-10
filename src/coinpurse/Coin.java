@@ -8,8 +8,6 @@ package coinpurse;
  */
 /** Implement Comparable to able to make a comparison. */
 public class Coin extends AbstractValuable {
-//	private final String THAI_SECOUND_CURRENCY = "Satang";
-//	private final String MALAY_SECOUND_CURRENCY = "Sen";
 
 	/**
 	 * A coin with given value and currency.
@@ -29,10 +27,6 @@ public class Coin extends AbstractValuable {
 	 * @return information of the coin.
 	 */
 	public String toString() {
-//		if(this.currency.equals("Baht") && this.value < 1)
-//			return String.format("%.2f-%s coin", this.value, this.THAI_SECOUND_CURRENCY);
-//		if(this.currency.equals("Ringgit") && this.value < 1)
-//			return String.format("%.2f-%s coin", this.value, this.MALAY_SECOUND_CURRENCY); 
 		return String.format("%.2f-%s coin", this.value, this.currency);
 	}
 

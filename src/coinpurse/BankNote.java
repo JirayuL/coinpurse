@@ -7,13 +7,8 @@ package coinpurse;
  * @version 17.2.17
  */
 public class BankNote extends AbstractValuable {
-//	/**
-//	 * I make it static because every time i call this object the serial number
-//	 * change too.
-//	 */
-//	private static long nextSerialNumber = 1000000;
-//	/** The serial number of bank note. */
 	private long serialNumber;
+
 	/**
 	 * Receive value and currency from user.
 	 * 
@@ -57,7 +52,8 @@ public class BankNote extends AbstractValuable {
 	@Override
 	public String toString() {
 		return String.format(value + "-%s note [%d]", currency, serialNumber);
-//		return String.format("%f-&s note %d", this.value, this.currency, this.serialNumber);
+		// return String.format("%f-&s note %d", this.value, this.currency,
+		// this.serialNumber);
 	}
 
 }

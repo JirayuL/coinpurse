@@ -107,13 +107,7 @@ public class Purse {
 		if (amount <= 0 || amount > getBalance())
 			return null;
 		List<Valuable> remove = new ArrayList<Valuable>();
-		Collections.sort(money, new Comparator<Valuable>() {
-			@Override
-			public int compare(Valuable o1, Valuable o2) {
-				return (int) Math.signum(o1.getValue() - o2.getValue());
-			}
-		});
-		Collections.reverse(money);
+		Collections.sort(money, new ValuableComparator());
 		for (Valuable valuable : money) {
 			if (amount >= valuable.getValue()) {
 				amount -= valuable.getValue();

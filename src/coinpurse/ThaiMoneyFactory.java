@@ -2,6 +2,12 @@ package coinpurse;
 
 import java.util.stream.DoubleStream;
 
+/**
+ * Class for creating Thai money currency Baht and Satung.
+ * 
+ * @author Jirayu Laungwilawan
+ * @version 25.2.17
+ */
 public class ThaiMoneyFactory extends MoneyFactory {
 	public static final String DEFAULT_CURRENCY = "Baht";
 	private final double[] coinValue = { 0.25, 0.50, 1, 2, 5, 10 };

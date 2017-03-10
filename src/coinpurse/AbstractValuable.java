@@ -1,8 +1,13 @@
 package coinpurse;
 
+/**
+ * Abstract class that contains the information of valuable.
+ * 
+ * @author Jirayu Laungwilawan
+ * @version 25.2.17
+ */
 public class AbstractValuable implements Valuable {
 
-//	public static final String DEFAULT_CURRENCY = "Baht";
 	/** Value of the coin. */
 	protected final double value;
 	/** The currency, of course. */
@@ -21,7 +26,7 @@ public class AbstractValuable implements Valuable {
 	}
 
 	/**
-	 *@see coinpurse.Valuable#getCurrency()
+	 * @see coinpurse.Valuable#getCurrency()
 	 */
 	public String getCurrency() {
 		return this.currency;

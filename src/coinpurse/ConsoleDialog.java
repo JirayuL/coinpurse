@@ -21,7 +21,7 @@ public class ConsoleDialog {
 
 	private MoneyFactory moneyFactory = MoneyFactory.getInstance();
 
-	private String CURRENCY = moneyFactory.getCurrency();
+	private String CURRENCY = "Baht";
 
 	/**
 	 * Initialize a new Purse dialog.
