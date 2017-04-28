@@ -2,6 +2,10 @@ package coinpurse;
 
 import java.util.List;
 import java.util.Observable;
+
+import coinpurse.strategy.GreedyWithdraw;
+import coinpurse.strategy.WithdrawStrategy;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -16,6 +20,7 @@ import java.util.Collections;
 public class Purse extends Observable {
 	/** Collection of objects in the purse. */
 	private List<Valuable> money = new ArrayList<>();
+	private WithdrawStrategy strategy;
 
 	/**
 	 * Capacity is maximum number of coins the purse can hold. Capacity is set
@@ -32,6 +37,7 @@ public class Purse extends Observable {
 	public Purse(int capacity) {
 		// TODO initialize the attributes of purse
 		this.capacity = capacity;
+		this.strategy = new GreedyWithdraw();
 	}
 
 	/**
@@ -96,6 +102,25 @@ public class Purse extends Observable {
 	}
 
 	/**
+	 * Get the strategy for withdraw from purse.
+	 * 
+	 * @return the strategy of withdraw process.
+	 */
+	public WithdrawStrategy getStrategy() {
+		return strategy;
+	}
+
+	/**
+	 * Set the strategy of the withdraw process.
+	 * 
+	 * @param strategy
+	 *            that want to change to.
+	 */
+	public void setStrategy(WithdrawStrategy strategy) {
+		this.strategy = strategy;
+	}
+
+	/**
 	 * Withdraw the requested amount of money. Return an array of Coins
 	 * withdrawn from purse, or return null if cannot withdraw the amount
 	 * requested.
@@ -108,22 +133,12 @@ public class Purse extends Observable {
 	public Valuable[] withdraw(double amount) {
 		if (amount <= 0 || amount > getBalance())
 			return null;
-		List<Valuable> remove = new ArrayList<Valuable>();
-		Collections.sort(money, new ValuableComparator());
-		for (Valuable valuable : money) {
-			if (amount >= valuable.getValue()) {
-				amount -= valuable.getValue();
-				remove.add(valuable);
-			}
-			if (amount == 0) {
-				for (Valuable removeValuable : remove)
-					money.remove(removeValuable);
-				setChanged();
-				notifyObservers();
-				return remove.toArray(new Valuable[0]);
-			}
-		}
-		return null;
+		List<Valuable> remove = strategy.withdraw(amount, money);
+		for (Valuable removeValuable : remove)
+			money.remove(removeValuable);
+		setChanged();
+		notifyObservers();
+		return remove.toArray(new Valuable[0]);
 	}
 
 	/**
