@@ -1,5 +1,8 @@
 package coinpurse;
- 
+
+import coinpurse.gui.PurseBalanceObserver;
+import coinpurse.gui.PurseProgressBar;
+
 /**
  * A main class to create objects and connect objects together.
  * The user interface needs a reference to coin purse.
@@ -20,6 +23,12 @@ public class Main {
 //TODO follow the steps in the sequence diagram
         // 1. create a Purse
     	Purse purse = new Purse(10);
+    	// Create Observer
+    	PurseProgressBar processBar = new PurseProgressBar(purse);
+    	PurseBalanceObserver balanceStatus = new PurseBalanceObserver(purse);
+    	// Add Observer
+    	purse.addObserver(balanceStatus);
+    	purse.addObserver(processBar);
         // 2. create a ConsoleDialog with a reference to the Purse object
     	ConsoleDialog console = new ConsoleDialog(purse);
         // 3. run the ConsoleDialog

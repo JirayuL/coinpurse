@@ -1,9 +1,9 @@
 package coinpurse;
 
 import java.util.List;
+import java.util.Observable;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 
 /**
  * A coin purse contains coins. You can insert coins, withdraw money, check the
@@ -13,7 +13,7 @@ import java.util.Comparator;
  * @author Jirayu Laungwilawan
  * @version 10.2.17
  */
-public class Purse {
+public class Purse extends Observable {
 	/** Collection of objects in the purse. */
 	private List<Valuable> money = new ArrayList<>();
 
@@ -90,6 +90,8 @@ public class Purse {
 		if (isFull() || valuable.getValue() <= 0)
 			return false;
 		money.add(valuable);
+		setChanged();
+		notifyObservers();
 		return true;
 	}
 
@@ -116,6 +118,8 @@ public class Purse {
 			if (amount == 0) {
 				for (Valuable removeValuable : remove)
 					money.remove(removeValuable);
+				setChanged();
+				notifyObservers();
 				return remove.toArray(new Valuable[0]);
 			}
 		}
