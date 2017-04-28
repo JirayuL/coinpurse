@@ -7,7 +7,6 @@ import coinpurse.strategy.GreedyWithdraw;
 import coinpurse.strategy.WithdrawStrategy;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 /**
  * A coin purse contains coins. You can insert coins, withdraw money, check the

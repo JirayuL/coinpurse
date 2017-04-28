@@ -2,6 +2,7 @@ package coinpurse;
 
 import coinpurse.gui.PurseBalanceObserver;
 import coinpurse.gui.PurseProgressBar;
+import coinpurse.strategy.RecursiveWithdraw;
 
 /**
  * A main class to create objects and connect objects together.
@@ -23,6 +24,7 @@ public class Main {
 //TODO follow the steps in the sequence diagram
         // 1. create a Purse
     	Purse purse = new Purse(10);
+    	purse.setStrategy(new RecursiveWithdraw());
     	// Create Observer
     	PurseProgressBar processBar = new PurseProgressBar(purse);
     	PurseBalanceObserver balanceStatus = new PurseBalanceObserver(purse);
