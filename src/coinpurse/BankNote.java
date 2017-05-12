@@ -27,6 +27,16 @@ public class BankNote extends AbstractValuable {
 	 * 
 	 * @param Recieve
 	 *            value of bank note.
+	 */
+	public BankNote(double value) {
+		this(value, "Baht");
+	}
+
+	/**
+	 * Receive value and currency from user.
+	 * 
+	 * @param Recieve
+	 *            value of bank note.
 	 * @param Recieve
 	 *            currency of bank note.
 	 */

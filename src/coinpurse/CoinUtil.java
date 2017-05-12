@@ -20,10 +20,9 @@ public class CoinUtil {
 	 * @param b
 	 * @return the larger of a and b.
 	 */
-	public static <E extends Comparable<? super E>> E max(E a, E b) {
-		if (a.compareTo(b) > 0)
-			return a;
-		return b;
+	public static <E extends Comparable<? super E>> E max(E... a) {
+		List<E> max = Arrays.asList(a);
+		return max.stream().max((e1, e2) -> e1.compareTo(e2)).get();
 	}
 
 	/**
@@ -39,10 +38,10 @@ public class CoinUtil {
 	 * @throws NullPointerException
 	 *             if the currency is null.
 	 */
-	public static List<Valuable> filterByCurrency(final List<Valuable> coinlist, String currency)
-			throws NullPointerException {
-		Predicate<Valuable> isCurrency = (v) -> (v.getCurrency().equals(currency));
-		List<Valuable> result = coinlist.stream().filter(isCurrency).collect(Collectors.toList());
+	public static List<? extends Valuable> filterByCurrency(final List<? extends Valuable> valuablelist,
+			String currency) throws NullPointerException {
+		Predicate<? super Valuable> isCurrency = (v) -> (v.getCurrency().equals(currency));
+		List<? extends Valuable> result = valuablelist.stream().filter(isCurrency).collect(Collectors.toList());
 		return result;
 	}
 
@@ -60,13 +59,8 @@ public class CoinUtil {
 	 *            order coins by currency. 2. Create a comparator instance and
 	 *            use it to sort the coins.
 	 */
-	public static void sortByCurrency(List<Valuable> coins) {
-		Comparator<Valuable> compToIgnoreCase = new Comparator<Valuable>() {
-			public int compare(Valuable c1, Valuable c2) {
-				return c1.getCurrency().compareToIgnoreCase(c2.getCurrency());
-			}
-		};
-		Collections.sort(coins, compToIgnoreCase);
+	public static void sortByCurrency(List<Valuable> valuable) {
+		Collections.sort(valuable, (v1, v2) -> (v1.getCurrency().compareToIgnoreCase(v2.getCurrency())));
 	}
 
 	/**
@@ -98,33 +92,34 @@ public class CoinUtil {
 	 *             if the currency of filterByCurrency is null.
 	 */
 	public static void main(String[] args) throws NullPointerException {
-		Coin max = CoinUtil.max(new Coin(5), new Coin(10));
-		
-		String currency = "Rupee";
-		System.out.println("Filter coins by currency of " + currency);
-		List<Valuable> coins = makeInternationalCoins();
-		int size = coins.size();
-		System.out.print(" INPUT: ");
-		printList(coins, " ");
-		List<Valuable> rupees = filterByCurrency(coins, currency);
-		System.out.print("RESULT: ");
-		printList(rupees, " ");
-		if (coins.size() != size)
-			System.out.println("Error: you changed the original list.");
+		Valuable max = CoinUtil.max(new Coin(5), new Coin(10), new BankNote(20));
+		System.out.println(max);
 
-		System.out.println("\nSort coins by currency");
-		coins = makeInternationalCoins();
-		System.out.print(" INPUT: ");
-		printList(coins, " ");
-		sortByCurrency(coins);
-		System.out.print("RESULT: ");
-		printList(coins, " ");
-
-		System.out.println("\nSum coins by currency");
-		coins = makeInternationalCoins();
-		System.out.print("coins= ");
-		printList(coins, " ");
-		sumByCurrency(coins);
+		// String currency = "Rupee";
+		// System.out.println("Filter coins by currency of " + currency);
+		// List<Valuable> coins = makeInternationalCoins();
+		// int size = coins.size();
+		// System.out.print(" INPUT: ");
+		// printList(coins, " ");
+		// List<? extends Valuable> rupees = filterByCurrency(coins, currency);
+		// System.out.print("RESULT: ");
+		// printList(rupees, " ");
+		// if (coins.size() != size)
+		// System.out.println("Error: you changed the original list.");
+		//
+		// System.out.println("\nSort coins by currency");
+		// coins = makeInternationalCoins();
+		// System.out.print(" INPUT: ");
+		// printList(coins, " ");
+		// sortByCurrency(coins);
+		// System.out.print("RESULT: ");
+		// printList(coins, " ");
+		//
+		// System.out.println("\nSum coins by currency");
+		// coins = makeInternationalCoins();
+		// System.out.print("coins= ");
+		// printList(coins, " ");
+		// sumByCurrency(coins);
 
 	}
 
@@ -148,8 +143,8 @@ public class CoinUtil {
 	}
 
 	/** Print the list on the console, on one line. */
-	public static void printList(List<Valuable> items, String separator) {
-		Iterator<Valuable> iter = items.iterator();
+	public static void printList(List<? extends Valuable> rupees, String separator) {
+		Iterator<? extends Valuable> iter = rupees.iterator();
 		while (iter.hasNext()) {
 			System.out.print(iter.next());
 			if (iter.hasNext())
