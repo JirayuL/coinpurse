@@ -22,6 +22,16 @@ public class Coin extends AbstractValuable {
 	}
 
 	/**
+	 * A coin with given value and currency.
+	 * 
+	 * @param value
+	 *            of coin from user.
+	 */
+	public Coin(double value) {
+		this(value, "Baht");
+	}
+
+	/**
 	 * Return information of the coin.
 	 * 
 	 * @return information of the coin.

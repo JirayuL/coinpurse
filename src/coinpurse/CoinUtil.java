@@ -1,13 +1,30 @@
 package coinpurse;
 
 import java.util.*;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 /**
  * Some Coin utility methods for practice using Lists and Comparator.
+ * 
  * @author Jirayu Laungwilawan
  * @version 14.2.17
  */
 public class CoinUtil {
+
+	/**
+	 * Return the larger of a and b, according to the natural ordering (defined
+	 * by compareTo).
+	 * 
+	 * @param a
+	 * @param b
+	 * @return the larger of a and b.
+	 */
+	public static <E extends Comparable<? super E>> E max(E a, E b) {
+		if (a.compareTo(b) > 0)
+			return a;
+		return b;
+	}
 
 	/**
 	 * Method that examines all the coins in a List and returns only the coins
@@ -19,14 +36,14 @@ public class CoinUtil {
 	 *            is the currency we want. Must not be null.
 	 * @return a new List containing only the elements from coinlist that have
 	 *         the requested currency.
+	 * @throws NullPointerException
+	 *             if the currency is null.
 	 */
-	public static List<Valuable> filterByCurrency(final List<Valuable> coinlist, String currency) {
-		List<Valuable> filteredCoin = new ArrayList<Valuable>();
-		for (Valuable coin : coinlist)
-			if (coin.getCurrency().equals(currency))
-				filteredCoin.add(coin);
-		return filteredCoin; // return a list of coin references copied from
-								// coinlist
+	public static List<Valuable> filterByCurrency(final List<Valuable> coinlist, String currency)
+			throws NullPointerException {
+		Predicate<Valuable> isCurrency = (v) -> (v.getCurrency().equals(currency));
+		List<Valuable> result = coinlist.stream().filter(isCurrency).collect(Collectors.toList());
+		return result;
 	}
 
 	/**
@@ -64,7 +81,7 @@ public class CoinUtil {
 	 */
 	public static void sumByCurrency(List<Valuable> money) {
 		Map<String, Double> map = new HashMap<>();
-		for (Valuable valuable : money){
+		for (Valuable valuable : money) {
 			String currency = valuable.getCurrency();
 			map.put(currency, map.getOrDefault(currency, 0.0) + valuable.getValue());
 		}
@@ -77,8 +94,12 @@ public class CoinUtil {
 	 * 
 	 * @param args
 	 *            not used
+	 * @throws NullPointerException
+	 *             if the currency of filterByCurrency is null.
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws NullPointerException {
+		Coin max = CoinUtil.max(new Coin(5), new Coin(10));
+		
 		String currency = "Rupee";
 		System.out.println("Filter coins by currency of " + currency);
 		List<Valuable> coins = makeInternationalCoins();
